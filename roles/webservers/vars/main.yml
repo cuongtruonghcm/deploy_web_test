@@ -1,0 +1,7 @@
+---
+user: www-data
+worker_processes: 2
+pid: /run/nginx.pid
+worker_connections: 768
+project_root: /home/cuongthn/app_test
+project_repo: "ssh://cuonglun12@bitbucket.com:cuonglun12/app_test.git"

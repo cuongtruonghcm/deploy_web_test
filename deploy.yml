@@ -1,0 +1,14 @@
+---
+- hosts: production
+  vars_prompt: 
+  - name: "sshpassword"
+    prompt: "Enter your 192.168.239.128 password"
+    private: yes
+  - name: "githubuser"
+    prompt: "Enter your github username" 
+    private: no 
+  - name: "githubpassword" 
+    prompt: "Enter your github password" 
+    private: yes
+  roles:
+  - role: webservers

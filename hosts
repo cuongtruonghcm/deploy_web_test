@@ -1,0 +1,2 @@
+[production]
+192.168.239.128 ansible_connection=ssh ansible_user=cuongthn ansible_password={{sshpassword}}

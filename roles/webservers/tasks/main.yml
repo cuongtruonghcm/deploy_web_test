@@ -1,0 +1,22 @@
+---
+- name: Pull sources from the repository.
+  git: repo=https://{{ githubuser | urlencode }}:{{ githubpassword }}@github.com/cuonglun12/app_test.git dest={{project_root}}
+
+- name: stop docker swarm
+  command: docker swarm leave --force
+  ignore_errors: yes
+  #when: docker node ls --filter name="ubuntu"
+- name: remove image
+  command:  docker image rm helloworld
+  ignore_errors: yes
+  #when: docker images helloworld:latest
+- name: rebuild image
+  command: docker image build --no-cache -t helloworld /home/cuongthn/app_test/
+- name: swarm init
+  command: docker swarm init
+- name: remove network  
+  command: docker network ls --filter name=helloworld_webnet
+  ignore_errors: yes
+- name: run stack
+  command: docker stack deploy -c /home/cuongthn/app_test/docker-compose.yml helloworld
+
